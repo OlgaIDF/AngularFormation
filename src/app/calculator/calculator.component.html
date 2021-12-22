@@ -1,0 +1,14 @@
+
+    <h1 class='my-5 text-center'> {{title1|uppercase}}</h1>
+    <form class="form-group text-center mb-3">
+    <input type="number" name="number1"  [(ngModel)]  = "number1" class="me-3">
+    <input type="number" name="number2" [(ngModel)]  = "number2">
+    </form>
+    <div class="d-flex justify-content-sm-center">
+    <button class="btn btn-primary me-2" (click)="add()">Addition</button>
+    <button class="btn btn-secondary me-2" (click)="sub()">Soustraction</button>
+    <button class="btn btn-warning me-2" (click)="multiply()">Multiplication</button>
+    <button class="btn btn-success me-2" (click)="divide()">Division</button>
+    <button class="btn btn-danger me-2" (click)="clear()">C</button>
+    </div>
+    <h4 class="my-5 text-center">Result : {{number3}}</h4>

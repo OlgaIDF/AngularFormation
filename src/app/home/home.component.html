@@ -1,0 +1,37 @@
+<!--  *ngFor permet de boucler sur une liste (un tableau de plusieurs element) dirictive structurelle -->
+<!--  *ngIf permet de faire un if  (directive structurelle)-->
+<!--  [ngStyle]="" permet de changer le style d un ou plusieurs element html de facon dynamique (directive d'attribut)  -->
+<!--   pipe | pour formater une information par exemple date:'d/M/y' ou uppercase ou lowercase ou json ou async . peut etre cumulé -->
+<!--   i represente l'iteration en cours -->
+<!--   property binding entour un attribut pour acceuillir une variable dynamique -->
+<!--   event binding appel une fonction lors d un evenement  (click)=""-->
+<!--   ngClass ajoute une classe de facon dynamique (directive structurelle) nom de Class suivi de la condition -->
+<!--   tow way binding communication bi-directionnelle materialisé par [()] communication dans les deux sens utile pour les formulaires "importer le FormsModule dans app.module.ts" -->
+
+*
+<h1 [ngStyle]="{ color: 'blue' }" class="text-center my-3">{{ title }}</h1>
+<ul class="list-group">
+    <li *ngFor="let todo of todos; let i = index" class="list-group-item"
+        [ngClass]="{ encours: todo.isDone, terminee: !todo.isDone }">
+        <img [src]="todo.img" alt="" class="my-2" />
+        <p>{{ todo.title | uppercase }}</p>
+        <p>{{ todo.date }}</p>
+        <p>{{ todo.description }}</p>
+        <div class="text-end">
+            <button class="btn btn-danger me-2" [disabled]="todo.isDone" (click)="onChangeStatus(i)">
+                En cours
+            </button>
+            <button class="btn btn-secondary me-2" [disabled]="!todo.isDone" (click)="onChangeStatus(i)">
+                Termineé
+            </button>
+            <button *ngIf="!todo.show" class="btn btn-success me-2" (click)="toggle(i)">
+                Modifier le tache
+            </button>
+            <button *ngIf="todo.show" class="btn btn-primary" (click)="toggle(i)">
+                Modification terminé
+            </button>
+            <input *ngIf="todo.show" type="text" class="form-control mt-3" placeholder="Modifier cette tache"
+                [(ngModel)]="todo.title" />
+        </div>
+    </li>
+</ul>
